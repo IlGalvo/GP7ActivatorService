@@ -143,11 +143,9 @@ namespace GP7ActivatorService
                     File.Create(ReminderDateFilePath).Dispose();
                 }
 
-                string allText = File.ReadAllText(ReminderDateFilePath);
-
-                if (!string.IsNullOrEmpty(allText))
+                if (DateTime.TryParse(File.ReadAllText(ReminderDateFilePath), out DateTime dateTime))
                 {
-                    isManaged = ((DateTime.Now.Day - DateTime.Parse(allText).Day) >= MinimumPostponeDays);
+                    isManaged = ((DateTime.Now.Day - dateTime.Day) >= MinimumPostponeDays);
                 }
 
                 if (isManaged)
