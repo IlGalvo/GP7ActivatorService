@@ -145,7 +145,7 @@ namespace GP7ActivatorService
 
                 if (DateTime.TryParse(File.ReadAllText(ReminderDateFilePath), out DateTime dateTime))
                 {
-                    isManaged = ((DateTime.Now.Day - dateTime.Day) >= MinimumPostponeDays);
+                    isManaged = (Math.Abs((DateTime.Now - dateTime).Days) >= MinimumPostponeDays);
                 }
 
                 if (isManaged)
